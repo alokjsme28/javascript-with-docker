@@ -1,0 +1,92 @@
+<html>
+
+<head>
+
+    <title>Docker Web-UI</title>
+
+</head>
+
+<style>
+
+body {
+	margin: 0px;
+	font-family: "Lucida Console" ; 
+	padding: 40px;
+	background-color: rgb(192, 192, 192);
+	text-align: center;
+	background-image: url("dock.png");
+	background-repeat: no-repeat;
+	background-position: right top;
+	
+}
+
+h3 {
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+#d1 {
+	text-align: left;
+	width: 1350px;
+  	height: 600px;  
+  	padding: 50px;
+  	border: 1px solid white;
+	
+}
+
+.button {
+  background-color: #e7e7e7; 
+  border: none;
+  color: black;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+</style>
+
+<script>
+function f1() {
+
+var cmd = document.getElementById("id1").value;
+
+var xhr = new XMLHttpRequest();
+
+xhr.open("GET", "http://192.168.1.13/cgi-bin/js.py?x=" + cmd, true);
+
+xhr.send();
+
+xhr.onload = function() {
+		var out = xhr.responseText;
+		document.getElementById("d1").innerHTML = out;
+}
+
+}
+
+</script>
+
+<body>
+
+	<h3> Please enter the command below </h3>
+	[root@localhost -]# <input id="id1" />
+<br />
+<br />
+	<button class="button" onclick="f1()"> ENTER </button>
+<br />
+<br />
+<hr>
+<hr>
+
+<pre>
+	<div id="d1"> 
+		<p>  Output will appear here :   </p>
+	</div>
+
+</pre>
+
+</body>
+
+</html>
